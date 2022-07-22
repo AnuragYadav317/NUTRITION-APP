@@ -1,0 +1,44 @@
+<div style="background-color: rgba(128, 128, 128, 0.76)"></div>
+
+<div class="container row row-cols-1 row-cols-md-3 mx-auto my-3">
+  <div class="row" *ngFor="let food of foodItem">
+    <div class="col g-4">
+      <div class="card h-100" id="food-card">
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold">{{ food.description }}</h5>
+          <p class="card-text">{{ food.brandOwner }}</p>
+          <div>
+            <ul class="list-unstyled d-flex justify-content-between font-small text-muted">
+              <h5>Food Nutrients</h5>
+            </ul>
+            <table class="table table-borderless table-sm mb-0">
+              <tbody *ngFor="let nutient of food.foodNutrients">
+                <tr>
+                  <td class="font-weight-small align-middle">
+                    {{ nutient.name }}
+                  </td>
+                  <td class="float-end font-weight-normal">
+                    <p class="mb-1">
+                      <span class="text-muted">{{ nutient.amount }} {{ nutient.unitName }}</span>
+                    </p>
+                  </td>
+                  <td class="float-end me-3">
+                    <i class="fas fa-sun fa-lg text-warning"></i>
+                  </td>
+                </tr>
+              </tbody>
+              <hr />
+            </table>
+          </div>
+        </div>
+        <div *ngIf="isLoggedIn()" class="card-footer">
+          <div class="favourit-flex">
+            <button class="btn btn-primary" (click)="addToFavourites(food)">
+              Add Favourites
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
